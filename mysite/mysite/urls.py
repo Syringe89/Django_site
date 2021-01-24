@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+import debug_toolbar
 
 from .settings import *
 
@@ -25,4 +26,7 @@ urlpatterns = [
 ]
 
 if DEBUG:
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
