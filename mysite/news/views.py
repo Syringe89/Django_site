@@ -7,6 +7,15 @@ from .forms import NewsForm
 from .models import News, Category
 from .utils import MyMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
+
+
+def test(request):
+    object = ['John1', 'Paul2', 'George3', 'Ringo4', 'John5', 'Paul6', 'George7', 'Ringo8']
+    paginator = Paginator(object, 2)
+    page_num = request.GET.get('page', 1)
+    page_objects = paginator.get_page(page_num)
+    return render(request, 'news/test.html', {'page_obj': page_objects})
 
 
 class HomeNews(MyMixin, ListView):
@@ -41,20 +50,19 @@ class NewsByCategory(MyMixin, ListView):
     def get_queryset(self):
         return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True).select_related('category')
 
+
 class ViewNews(DetailView):
     model = News
     context_object_name = 'news_item'
-    #pk_url_kwarg = 'news_id'
-    #template_name = 'news/news_detail.ntml'
+    # pk_url_kwarg = 'news_id'
+    # template_name = 'news/news_detail.ntml'
 
 
 class CreateNews(LoginRequiredMixin, CreateView):
     form_class = NewsForm
     template_name = 'news/add_news.html'
     login_url = '/admin/'
-    #success_url = reverse_lazy('home')
-
-
+    # success_url = reverse_lazy('home')
 
 # def index(request):
 #     news = News.objects.order_by('-created_at')
