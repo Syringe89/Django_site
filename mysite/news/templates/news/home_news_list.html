@@ -21,7 +21,7 @@
         <img src="{{ item.photo.url }}" alt="" width="300" class="float-left mr-3">
         {% endif %}
         <h5 class="card-title">{{ item.title }}</h5>
-        <p class="card-text">{{ item.content|linebreaks|truncatewords:50 }}</p>
+        <p class="card-text">{{ item.content|striptags|linebreaks|truncatewords:50 }}</p>
         <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read more...</a>
     </div>
 
