@@ -12,5 +12,14 @@
 
 <h1>Авторизация</h1>
 
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Авторизация</button>
+    </div>
+</form>
+
 {% endblock %}
 
