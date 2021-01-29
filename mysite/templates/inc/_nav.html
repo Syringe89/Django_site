@@ -11,6 +11,10 @@
                     <a class="nav-link" href="{% url 'home' %}">Главная</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">Контакты</a>
+                </li>
+
+                <li class="nav-item">
                     {% if request.user.is_authenticated %}
                     <a class="nav-link" href="{% url 'add_news' %}">Опубликовать новость</a>
                     {% endif %}
