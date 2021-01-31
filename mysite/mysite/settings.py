@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'ckeditor',
     'ckeditor_uploader',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,12 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CAPTCHA_FONT_SIZE = 32
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'django_cache'),
+    }
+}
